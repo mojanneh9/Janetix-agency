@@ -140,25 +140,48 @@ export default function HeroSection() {
         </div>
       </section>
 
-      {/* 🚀 Portfolio Section */}
-      <section id="portfolio" className="relative w-full py-24 bg-gray-900">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-purple-500 to-blue-500 text-transparent bg-clip-text">
-            Portfolio Highlights
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <motion.div key={index} className="group relative bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-purple-500/50 transition-all">
-                <Image src={project.image} alt={project.title} width={400} height={250} className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300" />
-                <div className="absolute bottom-4 left-4">
-                  <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-                  <p className="text-gray-300">{project.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+{/* 🚀 Portfolio Section */}
+<section id="portfolio" className="relative w-full py-24 bg-gray-900">
+  <div className="max-w-6xl mx-auto px-6">
+    <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-purple-500 to-blue-500 text-transparent bg-clip-text">
+      Portfolio Highlights
+    </h2>
+
+    {/* ✅ Ensuring Grid Layout Doesn't Break */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 relative overflow-visible pb-8">
+  {projects.map((project, index) => (
+    <motion.div
+      key={index}
+      className="group relative bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-purple-500/50 transition-all pb-4" // Add padding-bottom
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ scale: 1.05, y: -5 }} // Slight upward motion
+      transition={{ duration: 0.5, delay: index * 0.2 }}
+      viewport={{ once: true }}
+    >
+      {/* Image Container */}
+      <div className="relative w-full aspect-[16/9] overflow-hidden">
+        <Image
+          src={project.image}
+          alt={project.title}
+          width={300}
+          height={200}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          style={{ objectFit: "cover" }}
+          className="group-hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+
+      {/* Text Box */}
+      <div className="absolute bottom-4 left-4 right-4 bg-gray-900/90 p-3 rounded-lg opacity-90 z-10">
+        <h3 className="text-lg font-semibold text-white">{project.title}</h3>
+        <p className="text-gray-300 text-sm">{project.description}</p>
+      </div>
+    </motion.div>
+  ))}
+</div>
+    </div>
+    </section>
 
  {/* 🚀 Call-to-Action Section */}
  <section id="contact" className="relative w-full py-24 bg-gradient-to-b from-gray-900 to-black text-white">
@@ -179,11 +202,11 @@ export default function HeroSection() {
               Get a Free Consultation
             </a>
             <button
-              className="px-8 py-3 text-lg font-semibold border border-gray-300 rounded-xl hover:bg-gray-800 transition-all"
-              onClick={() => setIsContactModalOpen(true)}
-            >
-              Contact Us
-            </button>
+  className="px-8 py-3 text-lg font-semibold border border-gray-300 rounded-xl hover:bg-gray-800 transition-all"
+  onClick={() => setIsContactModalOpen(true)}
+>
+  Contact Us
+</button>
           </div>
         </div>
       </section>

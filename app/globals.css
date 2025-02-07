@@ -14,3 +14,16 @@ nav {
 body {
   padding-top: 64px; /* ✅ Adjust if needed (depending on navbar height) */
 }
+.group {
+  width: 100%;
+  max-width: 300px; /* Ensure the max width for items */
+}
+
+.group img {
+  width: 100%;
+  height: auto; /* Maintain the image aspect ratio */
+}
+
+.grid {
+  grid-template-rows: auto; /* Avoid overlapping content */
+}
